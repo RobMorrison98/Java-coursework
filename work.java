@@ -8,7 +8,8 @@ public class work implements ActionListener
 	JFrame scoreboard = new JFrame();
 	JPanel panel = new JPanel();				//Opens a panel
 	JPanel scorepanel = new JPanel();
-	JLabel[][] l = new JLabel[2][4];			//Add a label
+	JLabel l = new JLabel();				//Add a label
+	JLabel lbottom = new JLabel();
 	JTextField name = new JTextField(5);			//Add a text box
 	JButton[][] button = new JButton[3][4];			//adds 2D array of buttons
 	Icon Temp = new ImageIcon();				//temporary icon storage
@@ -19,10 +20,8 @@ public class work implements ActionListener
 	public work()
 	{
 		GridLayout layout = new GridLayout(3,4);	//Makes grid layout to fit images
-		panel.setLayout(layout);			//Sets the layout of panel to the grid
-
-		GridLayout scorelayout = new GridLayout(2,4);
-		scorepanel.setLayout(scorelayout);			
+		panel.setLayout(layout);			//Sets the layout of panel to the grid			
+		scorepanel.setLayout(null);			//Sets no default layout, therefore labels can be places via co-ordinates
 
 		ImageIcon aa = new ImageIcon("bart0.jpg");	//Import selected image
 		ImageIcon bb = new ImageIcon("bart1.jpg");	//Import selected image
@@ -63,9 +62,9 @@ public class work implements ActionListener
 		panel.add(button[2][2]);			//Add button to panel
 		panel.add(button[2][3]);			//Add button to panel
 
-		scorepanel.add(l[0][0]);			//Add label to scorepanel
-		scorepanel.add(l[0][1]);
+		scorepanel.add(l);				//Add label to scorepanel
 		scorepanel.add(name);				//Add text field to scorepanel
+		scorepanel.add(lbottom);
 
 		button[0][0].addActionListener(this);		//Add action listener to button
 		button[0][1].addActionListener(this);		//Add action listener to button
@@ -89,10 +88,14 @@ public class work implements ActionListener
 		scoreboard.setTitle("Scoreboard");		//Names the frame
 		scoreboard.setSize(250,300);			//Set frame size
 		scoreboard.setContentPane(scorepanel);
-		scoreboard.setLocation(535,010);
+		scoreboard.setLocation(535,020);		//Set location of scoreboard
 
-		l[0][0].setText("Score: " + score);
-		l[0][1].setText("Name: ");
+		l.setText("Score: " + score);
+		lbottom.setText("Name: ");
+
+		l.setBounds(0,0,150,50);			//boundries of the label
+		name.setBounds(100,275,100,20);			//boundries of the text field
+		lbottom.setBounds(50,275,100,20);		//bounries of the name label
 		
 		scoreboard.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//Closes when red cross clicked
 		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		//Closes when red cross clicked
@@ -119,7 +122,7 @@ public class work implements ActionListener
 				score = score + 1;			//Adds one to the score
 				x2 = 0;
 				y2 = 0;
-				l[0][0].setText("Score: " + String.valueOf(score)); //Sets label to be the currect score
+				l.setText("Score: " + String.valueOf(score)); //Sets label to be the currect score
 			}
 		}
 
@@ -140,7 +143,7 @@ public class work implements ActionListener
 				score = score + 1;
 				x2 = 0;
 				y2 = 1;
-				l[0][0].setText("Score: " + String.valueOf(score));
+				l.setText("Score: " + String.valueOf(score));
 				
 				}
 		}	
@@ -162,7 +165,7 @@ public class work implements ActionListener
 				score = score + 1;
 				x2 = 0;
 				y2 = 2;
-				l[0][0].setText("Score: " + String.valueOf(score));
+				l.setText("Score: " + String.valueOf(score));
 			}
 		}
 		
@@ -183,7 +186,7 @@ public class work implements ActionListener
 				score = score + 1;
 				x2 = 0;
 				y2 = 3;
-				l[0][0].setText("Score: " + String.valueOf(score));
+				l.setText("Score: " + String.valueOf(score));
 			}
 		}
 
@@ -204,7 +207,7 @@ public class work implements ActionListener
 				score = score + 1;
 				x2 = 1;
 				y2 = 0;
-				l[0][0].setText("Score: " + String.valueOf(score));
+				l.setText("Score: " + String.valueOf(score));
 			}
 		}
 
@@ -225,7 +228,7 @@ public class work implements ActionListener
 				score = score + 1;
 				x2 = 1;
 				y2 = 1;
-				l[0][0].setText("Score: " + String.valueOf(score));
+				l.setText("Score: " + String.valueOf(score));
 			}
 		}
 		
@@ -246,7 +249,7 @@ public class work implements ActionListener
 				score = score + 1;
 				x2 = 1;
 				y2 = 2;
-				l[0][0].setText("Score: " + String.valueOf(score));
+				l.setText("Score: " + String.valueOf(score));
 			}
 		}
 
@@ -267,7 +270,7 @@ public class work implements ActionListener
 				score = score + 1;
 				x2 = 1;
 				y2 = 3;
-				l[0][0].setText("Score: " + String.valueOf(score));
+				l.setText("Score: " + String.valueOf(score));
 			}
 		}
 
@@ -288,7 +291,7 @@ public class work implements ActionListener
 				score = score + 1;
 				x2 = 2;
 				y2 = 0;
-				l[0][0].setText("Score: " + String.valueOf(score));
+				l.setText("Score: " + String.valueOf(score));
 			}
 		}
 
@@ -309,7 +312,7 @@ public class work implements ActionListener
 				score = score + 1;
 				x2 = 2;
 				y2 = 1;
-				l[0][0].setText("Score: " + String.valueOf(score));
+				l.setText("Score: " + String.valueOf(score));
 			}
 		}
 		
@@ -330,7 +333,7 @@ public class work implements ActionListener
 				score = score + 1;
 				x2 = 2;
 				y2 = 2;
-				l[0][0].setText("Score: " + String.valueOf(score));
+				l.setText("Score: " + String.valueOf(score));
 			}
 		}
 
@@ -351,7 +354,7 @@ public class work implements ActionListener
 				score = score + 1;
 				x2 = 2;
 				y2 = 3;
-				l[0][0].setText("Score: " + String.valueOf(score));
+				l.setText("Score: " + String.valueOf(score));
 			}
 		}	
 	}
