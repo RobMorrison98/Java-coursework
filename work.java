@@ -10,12 +10,15 @@ public class work implements ActionListener
 	JPanel scorepanel = new JPanel();
 	JLabel l = new JLabel();				//Add a label
 	JLabel lbottom = new JLabel();
+	JLabel HighScore = new JLabel();
 	JTextField name = new JTextField(5);			//Add a text box
 	JButton[][] button = new JButton[3][4];			//adds 2D array of buttons
+	JButton finish = new JButton();
 	Icon Temp = new ImageIcon();				//temporary icon storage
 	int x1, x2, y1, y2;					//integers for action listeners
 	int locX, locY;						//integers for action listeners
 	int score = 0;						//integer for currect score
+	int highscore = 1000;
 	
 	public work()
 	{
@@ -62,10 +65,6 @@ public class work implements ActionListener
 		panel.add(button[2][2]);			//Add button to panel
 		panel.add(button[2][3]);			//Add button to panel
 
-		scorepanel.add(l);				//Add label to scorepanel
-		scorepanel.add(name);				//Add text field to scorepanel
-		scorepanel.add(lbottom);
-
 		button[0][0].addActionListener(this);		//Add action listener to button
 		button[0][1].addActionListener(this);		//Add action listener to button
 		button[0][2].addActionListener(this);		//Add action listener to button
@@ -84,18 +83,30 @@ public class work implements ActionListener
 		a.setSize(450,370);				//Set frame size (same as image)
 		a.setContentPane(panel);	
 
+		scorepanel.add(l);				//Add label to scorepanel
+		scorepanel.add(name);				//Add text field to scorepanel
+		scorepanel.add(lbottom);			//Add label to scoreboard
+		scorepanel.add(HighScore);			//Add label to scoreboard
+		scorepanel.add(finish);				//Add finish button
+
 		scoreboard.setVisible(true);			//Makes frame visible
 		scoreboard.setTitle("Scoreboard");		//Names the frame
 		scoreboard.setSize(250,300);			//Set frame size
-		scoreboard.setContentPane(scorepanel);
+		scoreboard.setContentPane(scorepanel);		//Content panel is scorepanel
 		scoreboard.setLocation(535,020);		//Set location of scoreboard
 
-		l.setText("Score: " + score);
-		lbottom.setText("Name: ");
+		l.setText("Score: " + score);			//Sets text to be score: value of score
+		lbottom.setText("Name: ");			//Sets text to Name:
+		HighScore.setText("HighScore: ");		//Set text to show HighScore
 
 		l.setBounds(0,0,150,50);			//boundries of the label
-		name.setBounds(100,275,100,20);			//boundries of the text field
-		lbottom.setBounds(50,275,100,20);		//bounries of the name label
+		name.setBounds(100,200,100,20);			//boundries of the text field
+		lbottom.setBounds(50,200,100,20);		//bounries of the name label
+		HighScore.setBounds(0,0,200,100);		//Set boundries of HIghScore
+		finish.setLocation(0,150);
+		finish.setSize(100,20);
+		finish.setText("Finished");
+		finish.addActionListener(this);
 		
 		scoreboard.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//Closes when red cross clicked
 		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 		//Closes when red cross clicked
@@ -356,6 +367,14 @@ public class work implements ActionListener
 				y2 = 3;
 				l.setText("Score: " + String.valueOf(score));
 			}
+		}
+
+		else if(e.getSource() == finish && (score < highscore))
+		{
+			HighScore.setText("Highscore: " + String.valueOf(score));
+			highscore = score;
+			score = 0;
+			l.setText("Score: " + String.valueOf(score));
 		}	
 	}
 }
